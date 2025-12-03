@@ -6,16 +6,8 @@ import { useState } from 'react';
 
 export default function Header() {
   const { getTotalItems } = useCart();
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const totalItems = getTotalItems();
-
-  const categories = [
-    { name: 'Electronics', href: '/products?category=electronics' },
-    { name: 'Jewelry', href: '/products?category=jewelery' },
-    { name: "Men's Clothing", href: "/products?category=men's clothing" },
-    { name: "Women's Clothing", href: "/products?category=women's clothing" },
-  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -33,35 +25,6 @@ export default function Header() {
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
               Home
-            </Link>
-            <div
-              className="relative"
-              onMouseEnter={() => setIsMegaMenuOpen(true)}
-              onMouseLeave={() => setIsMegaMenuOpen(false)}
-            >
-              <button className="text-gray-700 hover:text-blue-600 transition-colors">
-                Categories
-              </button>
-              {isMegaMenuOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded-lg border border-gray-200 py-2">
-                  {categories.map((category) => (
-                    <Link
-                      key={category.name}
-                      href={category.href}
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                      onClick={() => setIsMegaMenuOpen(false)}
-                    >
-                      {category.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-            <Link
-              href="/products"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              All Products
             </Link>
           </div>
 
@@ -122,26 +85,6 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
-            </Link>
-            <div className="py-2">
-              <div className="text-gray-700 font-semibold mb-2">Categories</div>
-              {categories.map((category) => (
-                <Link
-                  key={category.name}
-                  href={category.href}
-                  className="block py-2 pl-4 text-gray-600 hover:text-blue-600"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {category.name}
-                </Link>
-              ))}
-            </div>
-            <Link
-              href="/products"
-              className="block py-2 text-gray-700 hover:text-blue-600"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              All Products
             </Link>
           </div>
         )}
